@@ -1,11 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
 
 const UserInfo = () => {
-	return <h2>user info component</h2>;
+	const {
+		githubUser: { followers, following, public_repos, public_gists },
+	} = useContext(GithubContext);
+
+	return (
+		<section className='section-center'>
+			<Wrapper>
+				<article className='item'>
+					<span className='pink'>
+						<GoRepo />
+					</span>
+					<div>
+						<h3>{public_repos}</h3>
+						<p>Repos</p>
+					</div>
+				</article>
+				<article className='item'>
+					<span className='green'>
+						<FiUsers />
+					</span>
+					<div>
+						<h3>{followers}</h3>
+						<p>Followers</p>
+					</div>
+				</article>
+				<article className='item'>
+					<span className='purple'>
+						<FiUserPlus />
+					</span>
+					<div>
+						<h3>{following}</h3>
+						<p>Following</p>
+					</div>
+				</article>
+				<article className='item'>
+					<span className='yellow'>
+						<GoGist />
+					</span>
+					<div>
+						<h3>{public_gists}</h3>
+						<p>Gists</p>
+					</div>
+				</article>
+			</Wrapper>
+		</section>
+	);
 };
 
 const Wrapper = styled.section`

@@ -5,3 +5,24 @@ import mockFollowers from './mockData.js/mockFollowers';
 import axios from 'axios';
 
 const rootUrl = 'https://api.github.com';
+
+const GithubContext = React.createContext();
+
+const GithubProvider = ({ children }) => {
+	// Default values at initial loading
+	const [githubUser, setGithubUser] = useState(mockUser);
+	const [followers, setFollowers] = useState(mockFollowers);
+	const [repos, setRepos] = useState(mockRepos);
+	return (
+		<GithubContext.Provider
+			value={{
+				githubUser,
+				followers,
+				repos,
+			}}>
+			{children}
+		</GithubContext.Provider>
+	);
+};
+
+export { GithubContext, GithubProvider };
