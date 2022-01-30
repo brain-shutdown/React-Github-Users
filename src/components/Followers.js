@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 
 const Followers = () => {
-	return <h2>followers component</h2>;
+	const { followers } = useContext(GithubContext);
+
+	return (
+		<Wrapper>
+			<div className='followers'>
+				{followers.length > 0 ? (
+					followers.map((follower) => {
+						const { html_url, avatar_url, login, id } = follower;
+						return (
+							<article key={id}>
+								<img src={avatar_url} alt={login} />
+								<div>
+									<h4>{login}</h4>
+									<a href={html_url}>{html_url}</a>
+								</div>
+							</article>
+						);
+					})
+				) : (
+					<h4 className='no-followers'>No followers</h4>
+				)}
+			</div>
+		</Wrapper>
+	);
 };
 
 const Wrapper = styled.article`
@@ -35,6 +58,9 @@ const Wrapper = styled.article`
 		grid-template-rows: repeat(auto-fill, minmax(45px, 1fr));
 		gap: 1.25rem 1rem;
 		padding: 1rem 2rem;
+	}
+	.no-followers {
+		margin-top: 2.5rem;
 	}
 	article {
 		transition: var(--transition);
