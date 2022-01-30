@@ -9,45 +9,52 @@ const UserInfo = () => {
 		githubUser: { followers, following, public_repos, public_gists },
 	} = useContext(GithubContext);
 
+	const items = [
+		{
+			id: 1,
+			icon: <GoRepo className='icon' />,
+			label: 'Repos',
+			value: public_repos,
+			color: 'pink',
+		},
+		{
+			id: 2,
+			icon: <FiUsers className='icon' />,
+			label: 'Followers',
+			value: followers,
+			color: 'green',
+		},
+		{
+			id: 3,
+			icon: <FiUserPlus className='icon' />,
+			label: 'Following',
+			value: following,
+			color: 'purple',
+		},
+		{
+			id: 4,
+			icon: <GoGist className='icon' />,
+			label: 'Gists',
+			value: public_gists,
+			color: 'yellow',
+		},
+	];
+
 	return (
 		<section className='section-center'>
 			<Wrapper>
-				<article className='item'>
-					<span className='pink'>
-						<GoRepo />
-					</span>
-					<div>
-						<h3>{public_repos}</h3>
-						<p>Repos</p>
-					</div>
-				</article>
-				<article className='item'>
-					<span className='green'>
-						<FiUsers />
-					</span>
-					<div>
-						<h3>{followers}</h3>
-						<p>Followers</p>
-					</div>
-				</article>
-				<article className='item'>
-					<span className='purple'>
-						<FiUserPlus />
-					</span>
-					<div>
-						<h3>{following}</h3>
-						<p>Following</p>
-					</div>
-				</article>
-				<article className='item'>
-					<span className='yellow'>
-						<GoGist />
-					</span>
-					<div>
-						<h3>{public_gists}</h3>
-						<p>Gists</p>
-					</div>
-				</article>
+				{items.map((item) => {
+					const { id, icon, label, value, color } = item;
+					return (
+						<article className='item' key={id}>
+							<span className={color}>{icon}</span>
+							<div>
+								<h3>{value}</h3>
+								<p>{label}</p>
+							</div>
+						</article>
+					);
+				})}
 			</Wrapper>
 		</section>
 	);
