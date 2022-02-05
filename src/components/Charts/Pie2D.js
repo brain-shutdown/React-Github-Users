@@ -19,24 +19,21 @@ ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
 
 const ChartComponent = ({ data }) => {
 	const chartConfigs = {
-		type: 'column2d', // The chart type
-		width: '300', // Width of the chart
+		type: 'pie2d', // The chart type
+		width: '100%', // Width of the chart
 		height: '400', // Height of the chart
 		dataFormat: 'json', // Data type
 		dataSource: {
 			// Chart Configuration
 			chart: {
-				//Set the chart caption
-				caption: 'Countries With Most Oil Reserves [2017-18]',
-				//Set the chart subcaption
-				subCaption: 'In MMbbl = One Million barrels',
-				//Set the x-axis name
-				xAxisName: 'Country',
-				//Set the y-axis name
-				yAxisName: 'Reserves (MMbbl)',
-				numberSuffix: 'K',
-				//Set the theme for your chart
+				caption: 'Languages',
 				theme: 'fusion',
+				decimals: 0,
+				pieRadius: '40%',
+				paletteColors: '#2CADB9, #5D62B5, #FFC533, #F2726F, #8C6E63',
+				labelFontColor: '#627D98',
+				valueFontSize: '18rem',
+				plotHoverEffect: false,
 			},
 			// Chart Data
 			data,

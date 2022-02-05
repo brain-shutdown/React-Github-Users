@@ -181,3 +181,7 @@ p {
 main {
 	padding-bottom: 2rem;
 }
+
+.fc__tooltip {
+	width: max-content !important;
+}

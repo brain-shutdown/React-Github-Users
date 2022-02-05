@@ -35,6 +35,7 @@ const Wrapper = styled.article`
 	border-bottom-left-radius: var(--radius);
 	border-bottom-right-radius: var(--radius);
 	position: relative;
+	padding: 0.5rem 0;
 
 	&::before {
 		content: ' followers';
