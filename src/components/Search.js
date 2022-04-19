@@ -13,6 +13,7 @@ import useDebounce from '../useDebounce';
 
 const Search = () => {
 	const { setUser, userError } = useContext(GithubContext);
+	const [invalidInput, setInvalidInput] = useState(false);
 	const [options, setOptions] = useState([]);
 	const { fetchData, data, loading, error } = useFetch();
 	const { getRootProps, getInputProps, getListboxProps, getClearProps, getOptionProps, groupedOptions, focused, setAnchorEl, popupOpen, inputValue } = useAutocomplete({
@@ -27,7 +28,12 @@ const Search = () => {
 
 	function handleSubmit(event) {
 		event.preventDefault();
-		setUser(inputValue);
+		if (inputValue.length > 0) {
+			setInvalidInput(false);
+			setUser(inputValue);
+		} else {
+			setInvalidInput('Invalid search. Try again');
+		}
 	}
 
 	useEffect(() => {
@@ -51,6 +57,11 @@ const Search = () => {
 			{userError && (
 				<div>
 					<p className='error'>{userError}</p>
+				</div>
+			)}
+			{invalidInput && (
+				<div>
+					<p className='error'>{invalidInput}</p>
 				</div>
 			)}
 			<Wrapper>
@@ -83,7 +94,11 @@ const Search = () => {
 								groupedOptions.length > 0 &&
 								groupedOptions.map((option, index) => (
 									<li {...getOptionProps({ option, index })}>
-										<div onClick={() => setUser(option.login)}>
+										<div
+											onClick={() => {
+												setInvalidInput(false);
+												setUser(option.login);
+											}}>
 											<img src={option.avatar_url} alt='' />
 											<span>{option.login}</span>
 										</div>
