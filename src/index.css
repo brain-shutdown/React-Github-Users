@@ -178,8 +178,21 @@ p {
 	margin: 0 auto;
 	margin-top: 10rem;
 }
+
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 2rem auto;
+}
+
 main {
 	padding-bottom: 2rem;
+}
+
+.error {
+	color: var(--clr-red-dark);
+	font-size: 1.2rem;
 }
 
 .fc__tooltip {

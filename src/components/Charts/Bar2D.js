@@ -33,7 +33,7 @@ const ChartComponent = ({ data }) => {
 				chartRightMargin: 40,
 				paletteColors: '#2CADB9, #5D62B5, #FFC533, #F2726F, #8C6E63',
 				valueFontColor: '#627D98',
-				valueFontSize: '18rem',
+				valueFontSize: '1.2rem',
 				showValues: true,
 				formatNumberScale: 1,
 				labelFontSize: 12,
