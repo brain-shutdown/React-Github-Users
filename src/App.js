@@ -4,13 +4,23 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path='/' exact element={<Dashboard />} />
-				<Route path='/login' element={<Login />} />
-				<Route path='*' element={<Error />} />
-			</Routes>
-		</BrowserRouter>
+		<AuthWrapper>
+			<BrowserRouter>
+				<Routes>
+					<Route
+						path='/'
+						exact
+						element={
+							<PrivateRoute>
+								<Dashboard />
+							</PrivateRoute>
+						}
+					/>
+					<Route path='/login' element={<Login />} />
+					<Route path='*' element={<Error />} />
+				</Routes>
+			</BrowserRouter>
+		</AuthWrapper>
 	);
 }
 
